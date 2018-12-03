@@ -106,52 +106,112 @@
 
 // function displayCitation(){
 // 	var quotes=document.getElementsByTagName("blockquote");
-// 	for(var i=0;i<quotes.length;i++){
-// 		if(!quotes.getAttribute("cite")) continue;
-// 		var url=quotes[i].getAttribute("cite");
-// 	}
+// // 	for(var i=0;i<quotes.length;i++){
+// // 		if(!quotes.getAttribute("cite")) continue;
+// // 		var url=quotes[i].getAttribute("cite");
+// // 	}
 	
-// }
-// 获取abbr
- function getThumbnail(){
- 	var abbr=document.getElementsByTagName("abbr");
+// // }
+// // 获取abbr
+//  function getThumbnail(){
+//  	var abbr=document.getElementsByTagName("abbr");
  	
- 	var array=new Array();
- 	// 遍历数组
- 	for( var i=0;i<abbr.length;i++){
- 		var abbr_title=abbr[i].getAttribute("title");
- 		var abbr_text=abbr[i].childNodes[0].nodeValue;
- 		array[abbr_text]=abbr_title;
- 	}
+//  	var array=new Array();
+//  	// 遍历数组
+//  	for( var i=0;i<abbr.length;i++){
+//  		var abbr_title=abbr[i].getAttribute("title");
+//  		var abbr_text=abbr[i].childNodes[0].nodeValue;
+//  		array[abbr_text]=abbr_title;
+//  	}
 
 
- 	var dl=document.createElement("dl");
- 	for(t in array){
- 		var abbr_title=array[t];
- 		var dt=document.createElement("dt");
- 		var dt_text=document.createTextNode(t);
- 		dt.appendChild(dt_text);
- 		var dd=document.createElement("dd");
- 		var dd_text=document.createTextNode(abbr_title);
- 		dd.appendChild(dd_text);
- 		dl.appendChild(dt);
-	 	dl.appendChild(dd);
- 	}
+//  	var dl=document.createElement("dl");
+//  	for(t in array){
+//  		var abbr_title=array[t];
+//  		var dt=document.createElement("dt");
+//  		var dt_text=document.createTextNode(t);
+//  		dt.appendChild(dt_text);
+//  		var dd=document.createElement("dd");
+//  		var dd_text=document.createTextNode(abbr_title);
+//  		dd.appendChild(dd_text);
+//  		dl.appendChild(dt);
+// 	 	dl.appendChild(dd);
+//  	}
 	 	
-	 	document.body.appendChild(dl);
- }
+// 	 	document.body.appendChild(dl);
+//  }
  		
 
-function onLoadEvent(func){
-	var oldonload=window.onload;
-	if(typeof window.onload!='function'){
-		window.onload=func;
-	}else{
-		window.onload=function(){
-			oldonload();
-			func();
-		}
-	}
-}
+// function onLoadEvent(func){
+// 	var oldonload=window.onload;
+// 	if(typeof window.onload!='function'){
+// 		window.onload=func;
+// 	}else{
+// 		window.onload=function(){
+// 			oldonload();
+// 			func();
+// 		}
+// 	}
+// }
 
-onLoadEvent(getThumbnail);
+// onLoadEvent(getThumbnail);
+
+// // 显示文献来源连接表
+//  //  function blockquo(){
+//  //  	var blockquote=document.getElementsByTagName("blockquote");
+//  //  	for(var i=0;i<blockquote.length;i++){
+//  //  		var url=blockquote[i].getAttribute("cite");
+//  //  		var quoteElements=blockquote[i].getElementsByTagName("*");
+//  //  		var elem=quoteElements[quoteElements.length-1];
+//  //  		var link=document.createElement("a");
+//  //  		var link_text=document.createTextNode("source");
+//  //  		link.appendChild(link_text);
+//  //  		link.setAttribute("href",url);
+//  //  		var superscript=document.createElement("sup");
+//  //  		superscript.appendChild(link);
+//  //  		elem.appendChild(superscript);
+//  //  	}
+//  //  }
+//  // onLoadEvent(blockquo);
+//  // 显示文献来源连接表
+//      function blockquote(){
+//      	var blockquoteElement=document.getElementsByTagName("blockquote");
+//      	for(var i=0;i<blockquoteElement.length;i++){
+//      		var cite=blockquoteElement[i].getAttribute("cite");
+//      		 var citeNodes=blockquoteElement[i].getElementsByTagName("*");
+//      		 var theLast=citeNodes[citeNodes.length-1];
+//      		var a=document.createElement(a);
+//      		// var a_href=document.createElement(href);
+//      		var a_text=document.createTextNode("source");
+//      		a.appendChild(a_text);
+//      		a.setAttribute("href",cite);
+//      		var sup=document.createElement("sup");
+//      		sup.appendChild(a);
+//      		theLast.appendChild(sup);
+     		
+
+//      	}
+//      }
+//      	onLoadEvent(blockquote);
+     	// 显示快捷键菜单
+    function accesskeys(){
+     	var links=document.getElementsByTagName("a");
+     	var arrs=new Array();
+     	for(var i=0;i<links.length;i++){
+     		var link=links[i];
+     		var access=link.getAttribute("accesskey");
+     		var accesskey_text=link.lastChild.nodeValue;
+     		arrs[access]=accesskey_text;
+     	}
+     	var ul=document.createElement("ul");
+     	for(access in arrs){
+     		var accesskey_text=arrs[access];
+     		var str=access+":"+accesskey_text;
+     		var li=document.createElement("li");
+     		var li_text=document.createTextNode(str);
+     		li.appendChild(li_text);
+     		ul.appendChild(li);
+     	}
+     		document.body.appendChild(ul);
+     	}
+     	window.onload=accesskeys;
